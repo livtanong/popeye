@@ -1,0 +1,23 @@
+{
+  "name": "popeye",
+  "version": "0.0.1",
+  "description": "A native react popup component that can be anchored to any element",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/levitanong/popeye.git"
+  },
+  "author": "Levi Tan Ong <levi.ong@gmail.com> (https://github.com/levitanong)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/levitanong/popeye/issues"
+  },
+  "homepage": "https://github.com/levitanong/popeye",
+  "devDependencies": {
+    "node-libs-browser": "^0.5.2",
+    "webpack": "^1.9.11"
+  }
+}
