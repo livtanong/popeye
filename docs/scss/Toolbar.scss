@@ -1,5 +1,22 @@
 @import "bourbon";
+@import "variables";
 
 .Toolbar {
 	@include display(flex);
+	@include align-items(center);
+	background-color: $main;
+	color: $light;
+	height: 64px;
+	a {
+		color: $light;
+		text-decoration: none;
+		margin: 0px 16px;
+	}
+	.spacer {
+		@include flex(1);
+	}
+	#brand h1 {
+		font-size: 24px;
+		font-weight: 100;
+	}
 }

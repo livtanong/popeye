@@ -1,5 +1,8 @@
-// @import "bourbon";
+@import "bourbon";
+@import "variables";
 
 body {
-	font-family: "Helvetica";
+	font-family: "Roboto";
+	margin: 0px;
+	color: $dark;
 }
