@@ -1,0 +1,60 @@
+@import "bourbon";
+
+.Dropdown {
+  position: absolute;
+  z-index: 1000;
+}
+
+.DropdownTransition-enter {
+  opacity: 0.01;
+  @include transform(scale(0));
+  // .modal-body {
+  //   @include transform(translateY(50%));
+  // }
+  // &.fullscreen .modal-body {
+  //   @include transform(translateY(100%));
+  // }
+}
+
+.DropdownTransition-enter.DropdownTransition-enter-active {
+  opacity: 1;
+  // @include transition(opacity 0.3s);
+  @include transition-property(transform, opacity);
+  @include transition-duration(0.3s);
+  @include transform(scale(1));
+  // .modal-body {
+  //   @include transition-property(transform);
+  //   @include transition-duration(0.3s);
+  //   @include transform(translateY(-50%));
+  // }
+  // &.fullscreen .modal-body {
+  //   @include transform(translateY(0%));
+  // }
+}
+
+.DropdownTransition-leave {
+  @include transition-property(transform, opacity);
+  @include transition-duration(0.3s); 
+  @include transform(scale(1));
+  // @include transition(opacity 0.3s);
+  opacity: 1;
+  // .modal-body {
+  //   @include transition-property(transform);
+  //   @include transition-duration(0.3s);
+  //   @include transform(translateY(-50%));
+  // }
+  // &.fullscreen .modal-body {
+  //   @include transform(translateY(0%));
+  // }
+}
+
+.DropdownTransition-leave.DropdownTransition-leave-active {
+  @include transform(scale(0));
+  opacity: 0;
+  // .modal-body {
+  //   @include transform(translateY(50%));
+  // }
+  // &.fullscreen .modal-body {
+  //   @include transform(translateY(100%));
+  // }
+}

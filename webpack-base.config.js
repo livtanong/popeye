@@ -22,16 +22,15 @@ module.exports = function(options) {
 	 	{ test: /\.scss$/, loader: "css!sass?includePaths[]="+bourbon.includePaths }
 	]
 	styleLoaders.forEach(function(item) {
-		console.log(item);
 		if(Array.isArray(item.loader)) {
-			console.log("bulaga");
       item.loader = item.loader.join("!");
     }
 	  item.loader = ExtractTextPlugin.extract('style-loader', item.loader);
 	});
 
 	var routePaths = [
-	  "/"
+	  "/",
+	  "/guide/"
 	]
 
 	return {

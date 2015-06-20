@@ -12,7 +12,8 @@ export default class Toolbar extends React.Component {
 				</Link>
 				<div className="spacer" />
 				<div className="toolbar-group">
-					<Link className="toolbar-item" to="/">Home</Link>
+					<Link className="toolbar-item" to="index">Home</Link>
+					<Link className="toolbar-item" to="guide">Guide</Link>
 					<a className="toolbar-item" href="https://github.com/levitanong/popeye">
             Github
         	</a>

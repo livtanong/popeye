@@ -2,10 +2,12 @@ import React from "react";
 import Router, {DefaultRoute, Link, Route, RouteHandler} from "react-router";
 import Index from "./Index";
 import Wrapper from "./Wrapper";
+import Guide from "./Pages/Guide";
 
 let Routes = (
 	<Route path="/" handler={ Wrapper }>
-		<DefaultRoute name="index" handler={ Index }/>
+		<Route name="guide" path="guide/" handler={ Guide } />
+		<DefaultRoute name="index" handler={ Index } />
 	</Route>
 )
 
@@ -22,7 +24,6 @@ if (typeof document !== "undefined") {
 export default function render (locals, callback) {
 	Router.run(Routes, locals.path, Handler => {
 		let html = React.renderToString(<Handler />);
-		console.log(html);
     callback(null, "<!DOCTYPE html>" + html);
   });
 }

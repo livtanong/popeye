@@ -79,9 +79,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Wrapper2 = _interopRequireDefault(_Wrapper);
 
+	var _Index22 = __webpack_require__(205);
+
+	var _Index23 = _interopRequireDefault(_Index22);
+
 	var Routes = _react2["default"].createElement(
 		_reactRouter.Route,
 		{ path: "/", handler: _Wrapper2["default"] },
+		_react2["default"].createElement(_reactRouter.Route, { name: "guide", path: "guide/", handler: _Index23["default"] }),
 		_react2["default"].createElement(_reactRouter.DefaultRoute, { name: "index", handler: _Index2["default"] })
 	);
 
@@ -98,7 +103,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	function render(locals, callback) {
 		_reactRouter2["default"].run(Routes, locals.path, function (Handler) {
 			var html = _react2["default"].renderToString(_react2["default"].createElement(Handler, null));
-			console.log(html);
 			callback(null, "<!DOCTYPE html>" + html);
 		});
 	}
@@ -23807,8 +23811,13 @@ return /******/ (function(modules) { // webpackBootstrap
 						{ className: "toolbar-group" },
 						_react2["default"].createElement(
 							_reactRouter.Link,
-							{ className: "toolbar-item", to: "/" },
+							{ className: "toolbar-item", to: "index" },
 							"Home"
+						),
+						_react2["default"].createElement(
+							_reactRouter.Link,
+							{ className: "toolbar-item", to: "guide" },
+							"Guide"
 						),
 						_react2["default"].createElement(
 							"a",
@@ -23831,6 +23840,57 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 204 */,
+/* 205 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var Index = (function (_React$Component) {
+		function Index() {
+			_classCallCheck(this, Index);
+
+			if (_React$Component != null) {
+				_React$Component.apply(this, arguments);
+			}
+		}
+
+		_inherits(Index, _React$Component);
+
+		_createClass(Index, [{
+			key: "render",
+			value: function render() {
+				return _react2["default"].createElement(
+					"div",
+					null,
+					"derp"
+				);
+			}
+		}]);
+
+		return Index;
+	})(_react2["default"].Component);
+
+	exports["default"] = Index;
+	module.exports = exports["default"];
 
 /***/ }
 /******/ ])
