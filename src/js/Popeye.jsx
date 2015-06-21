@@ -10,43 +10,44 @@ const ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 export default class Dropdown extends LayeredComponent {
   constructor(props) {
     super(props);
+    this.renderLayer = this.renderLayer.bind(this);
+    this.getAnchorPos = this.getAnchorPos.bind(this);
+    this.getCorrectedAnchorPos = this.getCorrectedAnchorPos.bind(this);
+    this.handleBodyClick = this.handleBodyClick.bind(this);
+    this.clickHandler = this.clickHandler.bind(this);
+    this.getTransformOrigin = this.getTransformOrigin.bind(this);
+
     this.state = {
       isPropagationStopped: false,
-      currentAnchorPos: {
-        top: 0,
-        bottom: 0,
-        left: 0,
-        right: 0,
-        height: 0,
-        width: 0
-      }
-    }
+      currentAnchorPos: this.getAnchorPos()
+    };
+    super.init();
   }
   componentDidUpdate(prevProps, prevState) {
     super.componentDidUpdate(prevProps, prevState);
     if (this.props.anchor && (this.props.anchor != prevProps.anchor)) {
       this.setState({currentAnchorPos: this.getAnchorPos()})
     }
-
-    if (this.props.opened && !prevProps.opened) {
+    // not sure about this
+    if ((typeof document != "undefined") && this.props.opened && !prevProps.opened) {
       document.addEventListener('click', this.handleBodyClick);
     } else if (!this.props.opened && prevProps.opened) {
       document.removeEventListener('click', this.handleBodyClick);
     }
   }
   getAnchorPos() {
-    if (this.props.anchor /*&& this.props.anchor.isMounted()*/) {    
-      // var domNode = React.findDOMNode(this.props.anchor);
-      var domNode = this.props.anchor;
-      var pos = domNode.getBoundingClientRect();
+    if ((typeof document != "undefined") && this.props.anchor /*&& this.props.anchor.isMounted()*/) {    
+
+      var pos = this.props.anchor.getBoundingClientRect();
+      // console.log(pos);
       var clonePos = {};
       clonePos.top = pos.top;
-      clonePos.bottom = document.body.offsetHeight - pos.bottom;
+      // clonePos.bottom = document.body.offsetHeight - pos.bottom;
+      clonePos.bottom = pos.bottom;
       clonePos.left = Math.max(pos.left, 0);
       clonePos.right = document.body.offsetWidth - pos.right;
       clonePos.height = pos.height;
       clonePos.width = pos.width;
-
       return clonePos;
     } else {
       return {
@@ -59,7 +60,7 @@ export default class Dropdown extends LayeredComponent {
       }
     }
   }
-  getCorrectedAnchorPos() {
+  getCorrectedAnchorPos() { 
     return _.zip(this.props.anchorOrigin, this.props.offset).map(function(anchor){
       return this.state.currentAnchorPos[anchor[0]] + anchor[1];
     }, this);
@@ -71,7 +72,7 @@ export default class Dropdown extends LayeredComponent {
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();
   }
-  getTransformOrigin() {
+  getTransformOrigin() { 
     var center = {
       "x": this.state.currentAnchorPos.width / 2,
       "y": this.state.currentAnchorPos.height / 2
@@ -88,16 +89,15 @@ export default class Dropdown extends LayeredComponent {
     }, this).join(" ");
   }
   renderLayer() {
-    console.log("yo");
     var getCorrectedAnchorPos = this.getCorrectedAnchorPos();
 
     var styleObject = _.zipObject(this.props.dropdownOrigin, getCorrectedAnchorPos);
-    var child = React.cloneElement(React.Children.only(this.props.children), {
-      style: {
-        "transformOrigin": this.getTransformOrigin(),
-        "WebkitTransformOrigin": this.getTransformOrigin()
-      }
+    var childElement = React.Children.only(this.props.children);
+    var mergedStyles = _.assign(_.clone(childElement.props.style), {
+      "transformOrigin": this.getTransformOrigin(),
+      "WebkitTransformOrigin": this.getTransformOrigin()
     });
+    var child = React.cloneElement(childElement, _.assign(_.clone(childElement.props), {style: mergedStyles}));
 
     return (
       <ReactCSSTransitionGroup 
