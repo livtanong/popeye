@@ -30,7 +30,9 @@ module.exports = function(options) {
 
 	var routePaths = [
 	  "/",
-	  "/guide/"
+	  "/guide/",
+	  "/guide/basic-usage/",
+	  "/guide/other/"
 	]
 
 	return {

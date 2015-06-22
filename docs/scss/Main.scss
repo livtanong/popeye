@@ -6,3 +6,35 @@ body {
 	margin: 0px;
 	color: $dark;
 }
+
+.split-pane {
+	@include flex(1);
+	@include display(flex);
+	.sidebar {
+		min-width: 25%;
+		// background-color: $light;
+	}
+	.main {
+		overflow-y: auto;
+	}
+}
+
+.table-of-contents {
+	box-sizing: border-box;
+	padding: 16px;
+	font-weight: 300;
+	ul {
+		padding: 0px;
+		margin: 0px;
+		list-style: none;
+	}
+	h4 {
+		font-size: 14px;
+		text-transform: uppercase;
+		font-weight: 700;
+	}
+	a {
+		color: $dark;
+		text-decoration: none;
+	}
+}
