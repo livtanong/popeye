@@ -5,4 +5,92 @@ body {
 	font-family: "Roboto";
 	margin: 0px;
 	color: $dark;
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	line-height: 1.4;
+}
+
+.split-pane {
+	@include flex(1);
+	@include display(flex);
+	.sidebar {
+		min-width: 25%;
+		overflow-y: auto;
+		// background-color: $light;
+	}
+	.main {
+		overflow-y: auto;
+	}
+}
+
+section {
+	padding: 16px;
+	box-sizing: border-box;
+}
+
+.table-of-contents {
+	box-sizing: border-box;
+	padding: 16px;
+	font-weight: 300;
+	ul {
+		padding: 0px;
+		margin: 0px;
+		list-style: none;
+	}
+	h4 {
+		font-size: 14px;
+		text-transform: uppercase;
+		font-weight: 700;
+	}
+	a {
+		color: $dark;
+		text-decoration: none;
+	}
+}
+
+code {
+	background-color: $contrast1;
+	font-size: 16px;
+	&.code-block {
+		display: block;
+		box-sizing: border-box;
+		width: 100%;
+		overflow: auto;
+		margin: 16px 0px;
+	}
+}
+
+.dropdown {
+	background-color: white;
+	padding: 16px;
+	box-sizing: border-box;
+	box-shadow: 0px 4px 12px rgba(black, 0.2);
+}
+
+.button {
+	@include display(inline-flex);
+	@include align-items(center);
+	@include transition(box-shadow, 0.2s);
+	cursor: pointer;
+	height: 36px;
+	min-width: 64px;
+	padding: 0px 8px;
+	margin: 8px;
+	box-sizing: border-box;
+	border-radius: 2px;
+	text-transform: uppercase;
+	font-size: 14px;
+	&.button-main {
+		background-color: $contrast2;
+		color: $light;
+	}
+	&:hover {
+		box-shadow: 0px 4px 8px rgba(black, 0.2);
+	}
+	&:active {
+		box-shadow: 0px 8px 12px rgba(black, 0.2);
+	}
 }

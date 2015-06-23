@@ -5,12 +5,12 @@
 // import PrismStyles from "../scss/prism.css";
 // import IAmSorry from "./IAmSorry";
 import MainStyles from "../scss/Main.scss";
+import PrismStyles from "../scss/prism.css";
 
 import React from "react";
 import Router, {RouteHandler} from "react-router";
 import Toolbar from "./Toolbar";
-
-// import Prism from "./prism";
+import Prism from "./prism";
 
 class Wrapper extends React.Component {
 	render() {
@@ -27,7 +27,7 @@ class Wrapper extends React.Component {
 						<Toolbar />
 						<RouteHandler />
 					</main>
-					<script src="/docs.js" />
+					<script src="/bundle.js" />
 				</body>
 			</html>
 			
