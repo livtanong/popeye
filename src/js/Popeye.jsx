@@ -57,15 +57,17 @@ export default class Dropdown extends LayeredComponent {
       clonePos.right = document.body.offsetWidth - pos.right;
       clonePos.height = pos.height;
       clonePos.width = pos.width;
+      // console.log(React.findDOMNode(this).parentNode.getBoundingClientRect().top, document.body.scrollTop);
 
       return _.chain(this.props.popOrigin) // because everything should be based on this.
         .mapValues((value, key) => {
+          const scrollVal = this.dirToAxis(key) === "x" ? document.body.scrollLeft : document.body.scrollTop;
           if (_.has(this.props.anchorOrigin, key)) {
-            return clonePos[key] + this.props.anchorOrigin[key];
+            return clonePos[key] + this.props.anchorOrigin[key] + scrollVal;
           } else {
             let oppositeDir = this.oppositeDir(key);
             let breadth = this.dirToAxis(key) === "x" ? "width" : "height";
-            return clonePos[key] + clonePos[breadth] - this.props.anchorOrigin[oppositeDir];
+            return clonePos[key] + clonePos[breadth] - this.props.anchorOrigin[oppositeDir] + scrollVal;
           }
         })
         .mapKeys((value, key) => this.dirToAxis(key))

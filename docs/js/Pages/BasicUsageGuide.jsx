@@ -20,7 +20,7 @@ export default class BasicUsageGuide extends React.Component {
 	<Popeye
 		opened={ this.state.popover1 } 
 		onToggle={ this.toggleDropdown }>
-		<div className="yo" style={{backgroundColor: "white", "boxShadow": "0px 0px 8px rgba(0,0,0,0.2)"}}>
+		<div className="dropdown">
 			Aye aye, Captain!
 		</div>
 	</Popeye>
