@@ -35,15 +35,21 @@ export default class Dropdown extends LayeredComponent {
       document.removeEventListener('click', this.handleBodyClick);
     }
   }
+  dirToAxis(key) {
+    return {"left": "x", "right": "x", "top": "y", "bottom": "y"}[key];
+  }
+  oppositeDir(key) {
+    return {"left": "right", "right": "left", "top": "bottom", "bottom": "top"}[key];
+  }
   getAnchorPos() {
     if ((typeof document != "undefined") && this.props.anchor /*&& this.props.anchor.isMounted()*/) {    
 
-      var pos = this.props.anchor.getBoundingClientRect();
+      let pos = this.props.anchor.getBoundingClientRect();
       // console.log(pos);
-      var clonePos = {};
+      let clonePos = {};
       clonePos.top = pos.top;
-      // clonePos.bottom = document.body.offsetHeight - pos.bottom;
-      clonePos.bottom = pos.bottom;
+      clonePos.bottom = document.body.offsetHeight - pos.bottom;
+      // clonePos.bottom = pos.bottom;
       clonePos.left = Math.max(pos.left, 0);
       clonePos.right = document.body.offsetWidth - pos.right;
       clonePos.height = pos.height;
@@ -61,9 +67,18 @@ export default class Dropdown extends LayeredComponent {
     }
   }
   getCorrectedAnchorPos() { 
-    return _.zip(this.props.anchorOrigin, this.props.offset).map(function(anchor){
-      return this.state.currentAnchorPos[anchor[0]] + anchor[1];
-    }, this);
+    return _.chain(this.props.dropdownOrigin) // because everything should be based on this.
+      .mapValues((value, key) => {
+        if (_.has(this.props.anchorOrigin, key)) {
+          return this.state.currentAnchorPos[key] + this.props.anchorOrigin[key];
+        } else {
+          let oppositeDir = this.oppositeDir(key);
+          let breadth = this.dirToAxis(key) === "x" ? "width" : "height";
+          return this.state.currentAnchorPos[key] + this.state.currentAnchorPos[breadth] - this.props.anchorOrigin[oppositeDir];
+        }
+      })
+      .mapKeys((value, key) => this.dirToAxis(key))
+      .value();
   }
   handleBodyClick() {
     this.props.onToggle(false); // intent is to close
@@ -73,30 +88,25 @@ export default class Dropdown extends LayeredComponent {
     e.nativeEvent.stopImmediatePropagation();
   }
   getTransformOrigin() { 
-    var center = {
-      "x": this.state.currentAnchorPos.width / 2,
-      "y": this.state.currentAnchorPos.height / 2
-    }
-
     let originObj = _.chain(this.props.dropdownOrigin)
-      .map(function(loc){
-        var a = {
-          "top": (center.y - this.props.offset[0]) + "px",
-          "left": (center.x - this.props.offset[1]) +  "px",
-          "right": "calc(100% - " + (center.x - this.props.offset[1]) + "px)",
-          "bottom": "calc(100% - " + (center.y - this.props.offset[0]) + "px)"
+      .mapValues((value, key) => {
+        if (key === "top" || key === "left") {
+          return value + "px"
+        } else if (key === "right" || key === "bottom") {
+          return `calc(100% - ${value}px)`
         }
-        var b = {"left": "x","right": "x","top": "y","bottom": "y"};
-        return [b[loc], a[loc]];
-      }, this)
-      .zipObject()
+      })
+      .mapKeys((value, key) => this.dirToAxis(key))
       .value();
     return ["x", "y"].map((axis) => originObj[axis]).join(" ");
   }
   renderLayer() {
-    var getCorrectedAnchorPos = this.getCorrectedAnchorPos();
+    var correctedAnchorPos = this.getCorrectedAnchorPos();
     var transformOrigin = this.getTransformOrigin();
-    var styleObject = _.zipObject(this.props.dropdownOrigin, getCorrectedAnchorPos);
+    var styleObject = _.mapValues(this.props.dropdownOrigin, (value, key) => {
+      return correctedAnchorPos[this.dirToAxis(key)] - value
+    })
+    // console.log(styleObject);
     var childElement = React.Children.only(this.props.children);
     var mergedStyles = _.assign(_.clone(childElement.props.style), {
       "transformOrigin": transformOrigin,
@@ -135,9 +145,8 @@ Dropdown.propTypes = {
   className: React.PropTypes.string,
   opened: React.PropTypes.bool,
   onToggle: React.PropTypes.func,
-  anchor: React.PropTypes.object,
-  anchorOrigin: React.PropTypes.array,
-  dropdownOrigin: React.PropTypes.array,
-  offset: React.PropTypes.array,
+  anchor: React.PropTypes.object, // domNode
+  anchorOrigin: React.PropTypes.object,
+  dropdownOrigin: React.PropTypes.object,
   transitionEnabled: React.PropTypes.bool
 }

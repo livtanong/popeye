@@ -25,9 +25,8 @@ export default class BasicUsageGuide extends React.Component {
 				<h1>Basic Usage</h1>
 				<a ref="anchor1" onClick={ this.toggleDropdown.bind(this, "popover1") }>click me</a>
 				<Popeye
-					anchorOrigin={["bottom", "left"]} 
-					dropdownOrigin={["top", "left"]} 
-					offset={[0, 8]} 
+					anchorOrigin={{"top": 8, "left": 8}} 
+					dropdownOrigin={{"top": 8, "left": 8}} 
 					anchor={ this.state.anchor1 } 
 					opened={ this.state.popover1 } 
 					onToggle={ this.toggleDropdown.bind(this, "popover1") }>
