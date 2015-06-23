@@ -24,7 +24,6 @@ export default class Dropdown extends LayeredComponent {
   componentDidMount() {
     this.setState({currentAnchorPos: this.getAnchorPoint()});
     super.init();
-    // console.log(React.findDOMNode(this).parentNode);
   }
   componentDidUpdate(prevProps, prevState) {
     super.componentDidUpdate(prevProps, prevState);
