@@ -85,7 +85,7 @@ export default class Dropdown extends LayeredComponent {
   handleBodyClick() {
     this.props.onToggle(false); // intent is to close
   }
-  clickHandler() {
+  clickHandler(e) {
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();
   }
