@@ -22,12 +22,11 @@ export default class OtherGuide extends React.Component {
 	render() {
 		return (
 			<article>
-				<h2>Other</h2>
+				<h1>Other</h1>
 				<a ref="anchor1" onClick={ this.toggleDropdown.bind(this, "popover1") }>click me</a>
 				<Popeye
-					anchorOrigin={["left", "bottom"]} 
-					dropdownOrigin={["left", "top"]} 
-					offset={[8, 0]} 
+					anchorOrigin={{"top": 0, "left": 8}} 
+					popOrigin={{"top": 0, "right": 8}} 
 					anchor={ this.state.anchor1 } 
 					opened={ this.state.popover1 } 
 					onToggle={ this.toggleDropdown.bind(this, "popover1") }>

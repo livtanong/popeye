@@ -11,22 +11,21 @@ export default class Dropdown extends LayeredComponent {
   constructor(props) {
     super(props);
     this.renderLayer = this.renderLayer.bind(this);
-    this.getAnchorPos = this.getAnchorPos.bind(this);
-    this.getCorrectedAnchorPos = this.getCorrectedAnchorPos.bind(this);
+    this.getAnchorPoint = this.getAnchorPoint.bind(this);
     this.handleBodyClick = this.handleBodyClick.bind(this);
     this.clickHandler = this.clickHandler.bind(this);
     this.getTransformOrigin = this.getTransformOrigin.bind(this);
 
     this.state = {
       isPropagationStopped: false,
-      currentAnchorPos: this.getAnchorPos()
+      currentAnchorPos: this.getAnchorPoint()
     };
     super.init();
   }
   componentDidUpdate(prevProps, prevState) {
     super.componentDidUpdate(prevProps, prevState);
     if (this.props.anchor && (this.props.anchor != prevProps.anchor)) {
-      this.setState({currentAnchorPos: this.getAnchorPos()})
+      this.setState({currentAnchorPos: this.getAnchorPoint()})
     }
     // not sure about this
     if ((typeof document != "undefined") && this.props.opened && !prevProps.opened) {
@@ -41,7 +40,7 @@ export default class Dropdown extends LayeredComponent {
   oppositeDir(key) {
     return {"left": "right", "right": "left", "top": "bottom", "bottom": "top"}[key];
   }
-  getAnchorPos() {
+  getAnchorPoint() {
     if ((typeof document != "undefined") && this.props.anchor /*&& this.props.anchor.isMounted()*/) {    
 
       let pos = this.props.anchor.getBoundingClientRect();
@@ -49,36 +48,32 @@ export default class Dropdown extends LayeredComponent {
       let clonePos = {};
       clonePos.top = pos.top;
       clonePos.bottom = document.body.offsetHeight - pos.bottom;
-      // clonePos.bottom = pos.bottom;
-      clonePos.left = Math.max(pos.left, 0);
+      clonePos.left = pos.left;
       clonePos.right = document.body.offsetWidth - pos.right;
       clonePos.height = pos.height;
       clonePos.width = pos.width;
-      return clonePos;
+
+      return _.chain(this.props.popOrigin) // because everything should be based on this.
+        .mapValues((value, key) => {
+          if (_.has(this.props.anchorOrigin, key)) {
+            return clonePos[key] + this.props.anchorOrigin[key];
+          } else {
+            let oppositeDir = this.oppositeDir(key);
+            let breadth = this.dirToAxis(key) === "x" ? "width" : "height";
+            return clonePos[key] + clonePos[breadth] - this.props.anchorOrigin[oppositeDir];
+          }
+        })
+        .mapKeys((value, key) => this.dirToAxis(key))
+        .value();
+
     } else {
       return {
         top: 0,
         bottom: 0,
         left: 0,
-        right: 0,
-        height: 0,
-        width: 0
+        right: 0
       }
     }
-  }
-  getCorrectedAnchorPos() { 
-    return _.chain(this.props.dropdownOrigin) // because everything should be based on this.
-      .mapValues((value, key) => {
-        if (_.has(this.props.anchorOrigin, key)) {
-          return this.state.currentAnchorPos[key] + this.props.anchorOrigin[key];
-        } else {
-          let oppositeDir = this.oppositeDir(key);
-          let breadth = this.dirToAxis(key) === "x" ? "width" : "height";
-          return this.state.currentAnchorPos[key] + this.state.currentAnchorPos[breadth] - this.props.anchorOrigin[oppositeDir];
-        }
-      })
-      .mapKeys((value, key) => this.dirToAxis(key))
-      .value();
   }
   handleBodyClick() {
     this.props.onToggle(false); // intent is to close
@@ -88,7 +83,7 @@ export default class Dropdown extends LayeredComponent {
     e.nativeEvent.stopImmediatePropagation();
   }
   getTransformOrigin() { 
-    let originObj = _.chain(this.props.dropdownOrigin)
+    let originObj = _.chain(this.props.popOrigin)
       .mapValues((value, key) => {
         if (key === "top" || key === "left") {
           return value + "px"
@@ -101,18 +96,15 @@ export default class Dropdown extends LayeredComponent {
     return ["x", "y"].map((axis) => originObj[axis]).join(" ");
   }
   renderLayer() {
-    var correctedAnchorPos = this.getCorrectedAnchorPos();
-    var transformOrigin = this.getTransformOrigin();
-    var styleObject = _.mapValues(this.props.dropdownOrigin, (value, key) => {
-      return correctedAnchorPos[this.dirToAxis(key)] - value
-    })
-    // console.log(styleObject);
-    var childElement = React.Children.only(this.props.children);
-    var mergedStyles = _.assign(_.clone(childElement.props.style), {
+    const transformOrigin = this.getTransformOrigin();
+    const styleObject = _.mapValues(this.props.popOrigin, 
+      (value, key) => this.state.currentAnchorPos[this.dirToAxis(key)] - value)
+    let childElement = React.Children.only(this.props.children);
+    let mergedStyles = _.assign(_.clone(childElement.props.style), {
       "transformOrigin": transformOrigin,
       "WebkitTransformOrigin": transformOrigin
     });
-    var child = React.cloneElement(childElement, _.assign(_.clone(childElement.props), {style: mergedStyles}));
+    let child = React.cloneElement(childElement, _.assign(_.clone(childElement.props), {style: mergedStyles}));
 
     return (
       <ReactCSSTransitionGroup 
@@ -135,9 +127,8 @@ export default class Dropdown extends LayeredComponent {
 Dropdown.defaultProps = {
   component: "div",
   opened: false,
-  anchorOrigin: ["left", "top"],
-  dropdownOrigin: ["left", "bottom"],
-  offset: [0, 0],
+  anchorOrigin: {"left": 0, "top": 0},
+  popOrigin: {"left": 0, "bottom": 0},
   transitionEnabled: true
 }
 Dropdown.propTypes = {
@@ -147,6 +138,6 @@ Dropdown.propTypes = {
   onToggle: React.PropTypes.func,
   anchor: React.PropTypes.object, // domNode
   anchorOrigin: React.PropTypes.object,
-  dropdownOrigin: React.PropTypes.object,
+  popOrigin: React.PropTypes.object,
   transitionEnabled: React.PropTypes.bool
 }
