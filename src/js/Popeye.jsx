@@ -27,7 +27,8 @@ export default class Dropdown extends LayeredComponent {
   }
   componentDidUpdate(prevProps, prevState) {
     super.componentDidUpdate(prevProps, prevState);
-    if (this.props.anchor && (this.props.anchor != prevProps.anchor)) {
+
+    if (this.props.opened !== prevProps.opened) {
       this.setState({currentAnchorPos: this.getAnchorPoint()})
     }
     // not sure about this
