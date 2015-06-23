@@ -127,7 +127,7 @@ export default class Dropdown extends LayeredComponent {
     )
   }
   render() {
-    return <div />
+    return <div className="Popeye" />
   }
 }
 
