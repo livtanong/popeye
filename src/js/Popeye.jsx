@@ -18,9 +18,13 @@ export default class Dropdown extends LayeredComponent {
 
     this.state = {
       isPropagationStopped: false,
-      currentAnchorPos: this.getAnchorPoint()
+      currentAnchorPos: {}
     };
+  }
+  componentDidMount() {
+    this.setState({currentAnchorPos: this.getAnchorPoint()});
     super.init();
+    // console.log(React.findDOMNode(this).parentNode);
   }
   componentDidUpdate(prevProps, prevState) {
     super.componentDidUpdate(prevProps, prevState);
@@ -41,9 +45,9 @@ export default class Dropdown extends LayeredComponent {
     return {"left": "right", "right": "left", "top": "bottom", "bottom": "top"}[key];
   }
   getAnchorPoint() {
-    if ((typeof document != "undefined") && this.props.anchor /*&& this.props.anchor.isMounted()*/) {    
+    if ((typeof document != "undefined") /*&& this.props.anchor*/ /*&& this.props.anchor.isMounted()*/) {    
 
-      let pos = this.props.anchor.getBoundingClientRect();
+      let pos = this.props.anchor ? this.props.anchor.getBoundingClientRect() : React.findDOMNode(this).parentNode.getBoundingClientRect();
       // console.log(pos);
       let clonePos = {};
       clonePos.top = pos.top;
