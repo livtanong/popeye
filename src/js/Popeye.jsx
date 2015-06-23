@@ -105,7 +105,7 @@ export default class Dropdown extends LayeredComponent {
     const styleObject = _.mapValues(this.props.popOrigin, 
       (value, key) => this.state.currentAnchorPos[this.dirToAxis(key)] - value)
     let childElement = React.Children.only(this.props.children);
-    let mergedStyles = _.assign(_.clone(childElement.props.style), {
+    let mergedStyles = _.assign(_.clone(childElement.props.style || {}), {
       "transformOrigin": transformOrigin,
       "WebkitTransformOrigin": transformOrigin
     });
@@ -132,8 +132,8 @@ export default class Dropdown extends LayeredComponent {
 Dropdown.defaultProps = {
   component: "div",
   opened: false,
-  anchorOrigin: {"left": 0, "top": 0},
-  popOrigin: {"left": 0, "bottom": 0},
+  anchorOrigin: {"left": 0, "bottom": 0},
+  popOrigin: {"left": 0, "top": 0},
   transitionEnabled: true
 }
 Dropdown.propTypes = {

@@ -18,12 +18,10 @@ export default class BasicUsageGuide extends React.Component {
 `<a className="button button-main" onClick={ this.toggleDropdown }>
 	click me
 	<Popeye
-		anchorOrigin={ {"bottom": 0, "left": 8} } 
-		popOrigin={ {"top": 0, "right": 8} } 
 		opened={ this.state.popover1 } 
 		onToggle={ this.toggleDropdown }>
 		<div className="yo" style={{backgroundColor: "white", "boxShadow": "0px 0px 8px rgba(0,0,0,0.2)"}}>
-			wat asdfjas;dkfja;sdlkfjas;dlkf
+			Aye aye, Captain!
 		</div>
 	</Popeye>
 </a>`
@@ -35,12 +33,10 @@ export default class BasicUsageGuide extends React.Component {
 					<a className="button button-main" onClick={ this.toggleDropdown }>
 						click me
 						<Popeye
-							anchorOrigin={ {"bottom": 0, "left": 8} } 
-							popOrigin={ {"top": 0, "right": 8} } 
 							opened={ this.state.popover1 } 
 							onToggle={ this.toggleDropdown }>
-							<div className="yo" style={{backgroundColor: "white", "boxShadow": "0px 0px 8px rgba(0,0,0,0.2)"}}>
-								wat asdfjas;dkfja;sdlkfjas;dlkf
+							<div className="dropdown">
+								Aye aye, Captain!
 							</div>
 						</Popeye>
 					</a>
