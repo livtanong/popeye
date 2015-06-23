@@ -65,7 +65,8 @@ code {
 	background-color: white;
 	padding: 16px;
 	box-sizing: border-box;
-	box-shadow: 0px 8px 8px rgba(black, 0.2);
+	box-shadow: 0px 4px 12px rgba(black, 0.2);
+	z-index: 1000;
 }
 
 .button {
