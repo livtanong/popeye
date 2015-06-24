@@ -111,13 +111,13 @@ export default class OffsetGuide extends React.Component {
 					<p>The MDG advises us to make the popover <em>cover</em> the button from which it emanates.</p>
 					<p>Both <code>anchorOffset</code> and <code>popOffset</code> have the same value because we would like them both to be aligned to the top-left. The numerical values we assign them only control the origin of the animation—the center point of the anchor.</p>
 					<div className="example">
-						<a key="anchor2" className="button button-main" onClick={ Popeye.toggleHandler(this, "popover2") }>
+						<a key="anchor2" className="button button-main" onClick={ Popeye.toggleHandler(this, "popover3") }>
 							click me 3
 							<Popeye
 								anchorOffset={ {left: 45, top: 16} }
 								popOffset={ {left: 45, top: 16} }
-								opened={ this.state.popover2 } 
-								onToggle={ Popeye.toggleHandler(this, "popover2") }>
+								opened={ this.state.popover3 } 
+								onToggle={ Popeye.toggleHandler(this, "popover3") }>
 								<div className="dropdown">
 									Aye aye, Captain!
 								</div>
