@@ -1,5 +1,3 @@
-import PopeyeStyles from "../scss/Popeye.scss";
-
 import React from "react/addons";
 import _ from "lodash";
 import classnames from "classnames";
