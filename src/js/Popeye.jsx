@@ -54,7 +54,7 @@ export default class Dropdown extends LayeredComponent {
       const point = _.chain(_.pick(pos, _.keys(this.props.anchorOffset)))
         .mapValues((value, key) => {
           const scrollProp = (this.dirToAxis(key) === "x") ? "scrollLeft" : "scrollTop";
-          return value + document.body[scrollProp];
+          return value + document.body[scrollProp] + (this.props.anchorOffset[key] * ((key === "right" || key === "bottom") ? -1 : 1));
         })
         .mapKeys((value, key) => this.dirToAxis(key))
         .value()

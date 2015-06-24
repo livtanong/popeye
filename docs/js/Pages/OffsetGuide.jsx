@@ -12,7 +12,7 @@ export default class OffsetGuide extends React.Component {
 	}
 	render() {
 		const demoString1 = 
-`<a className="button button-main" onClick={ Popeye.toggleHandler(this, "popover1") }>
+`<a key="anchor1" className="button button-main" onClick={ Popeye.toggleHandler(this, "popover1") }>
 	click me
 	<Popeye
 		anchorOffset={ {left: 0, bottom: -16} }
@@ -28,7 +28,7 @@ export default class OffsetGuide extends React.Component {
 `<a key="anchor2" className="button button-main" onClick={ Popeye.toggleHandler(this, "popover2") }>
 	click me 2
 	<Popeye
-		popOffset={ {left: 0, bottom: -16} }
+		popOffset={ {left: 0, top: -16} }
 		opened={ this.state.popover2 } 
 		onToggle={ Popeye.toggleHandler(this, "popover2") }>
 		<div className="dropdown">
@@ -73,11 +73,12 @@ export default class OffsetGuide extends React.Component {
 				<section>
 					<h2>Pop Offset</h2>
 					<p>... And sometimes, we want to move the point on <code>Popeye</code> that the anchor point is attached to.</p>
+					<p>This has the same effect as the example above illustrating anchor offsetting, except for one difference: the origin of the animation</p>
 					<div className="example">
 						<a key="anchor2" className="button button-main" onClick={ Popeye.toggleHandler(this, "popover2") }>
 							click me 2
 							<Popeye
-								popOffset={ {left: 0, bottom: 16} }
+								popOffset={ {left: 0, top: -16} }
 								opened={ this.state.popover2 } 
 								onToggle={ Popeye.toggleHandler(this, "popover2") }>
 								<div className="dropdown">
