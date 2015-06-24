@@ -47,27 +47,27 @@ export default class Dropdown extends LayeredComponent {
   getAnchorPoint() {
     if (typeof document != "undefined") {    
 
-      let pos = this.props.anchor 
+      const pos = this.props.anchor 
         ? this.props.anchor.getBoundingClientRect() 
         : React.findDOMNode(this).parentNode.getBoundingClientRect(); // uses parent as anchor instead.
-      let clonePos = {};
-      clonePos.top = pos.top;
-      clonePos.bottom = document.body.offsetHeight - pos.bottom;
-      clonePos.left = pos.left;
-      clonePos.right = document.body.offsetWidth - pos.right;
-      clonePos.height = pos.height;
-      clonePos.width = pos.width;
-      // console.log(React.findDOMNode(this).parentNode.getBoundingClientRect().top, document.body.scrollTop);
 
-      return _.chain(this.props.popOrigin) // because everything should be based on this.
+      const point = _.chain(_.pick(pos, _.keys(this.props.anchorOffset)))
         .mapValues((value, key) => {
-          const scrollVal = this.dirToAxis(key) === "x" ? document.body.scrollLeft : document.body.scrollTop;
-          if (_.has(this.props.anchorOrigin, key)) {
-            return clonePos[key] + this.props.anchorOrigin[key] + scrollVal;
+          const scrollProp = (this.dirToAxis(key) === "x") ? "scrollLeft" : "scrollTop";
+          return value + document.body[scrollProp];
+        })
+        .mapKeys((value, key) => this.dirToAxis(key))
+        .value()
+
+      return _.chain(this.props.popOffset)
+        .mapValues((value, key) => {
+          const pos = point[this.dirToAxis(key)];
+          if (key === "right") {
+            return document.body.offsetWidth - pos;
+          } else if (key === "bottom") {
+            return document.body.offsetHeight - pos;
           } else {
-            let oppositeDir = this.oppositeDir(key);
-            let breadth = this.dirToAxis(key) === "x" ? "width" : "height";
-            return clonePos[key] + clonePos[breadth] - this.props.anchorOrigin[oppositeDir] + scrollVal;
+            return pos;
           }
         })
         .mapKeys((value, key) => this.dirToAxis(key))
@@ -90,7 +90,7 @@ export default class Dropdown extends LayeredComponent {
     e.nativeEvent.stopImmediatePropagation();
   }
   getTransformOrigin() { 
-    let originObj = _.chain(this.props.popOrigin)
+    let originObj = _.chain(this.props.popOffset)
       .mapValues((value, key) => {
         if (key === "top" || key === "left") {
           return value + "px"
@@ -104,8 +104,9 @@ export default class Dropdown extends LayeredComponent {
   }
   renderLayer() {
     const transformOrigin = this.getTransformOrigin();
-    const styleObject = _.mapValues(this.props.popOrigin, 
-      (value, key) => this.state.currentAnchorPos[this.dirToAxis(key)] - value)
+    const styleObject = _.mapValues(this.props.popOffset, 
+      (value, key) => this.state.currentAnchorPos[this.dirToAxis(key)] - value);
+
     let childElement = React.Children.only(this.props.children);
     let mergedStyles = _.assign(_.clone(childElement.props.style || {}), {
       "transformOrigin": transformOrigin,
@@ -129,13 +130,17 @@ export default class Dropdown extends LayeredComponent {
   render() {
     return <div className="Popeye" />
   }
+
+  static toggleHandler(context, popeyeName) {
+    return (value) => context.setState({[popeyeName]: isFinite(value) ? value : !context.state[popeyeName]});
+  }
 }
 
 Dropdown.defaultProps = {
   component: "div",
   opened: false,
-  anchorOrigin: {"left": 0, "bottom": 0},
-  popOrigin: {"left": 0, "top": 0},
+  anchorOffset: {"left": 0, "bottom": 0},
+  popOffset: {"left": 0, "top": 0},
   transitionEnabled: true
 }
 Dropdown.propTypes = {
@@ -144,7 +149,7 @@ Dropdown.propTypes = {
   opened: React.PropTypes.bool,
   onToggle: React.PropTypes.func,
   anchor: React.PropTypes.object, // domNode
-  anchorOrigin: React.PropTypes.object,
-  popOrigin: React.PropTypes.object,
+  anchorOffset: React.PropTypes.object,
+  popOffset: React.PropTypes.object,
   transitionEnabled: React.PropTypes.bool
 }

@@ -14,6 +14,7 @@ export default class Guide extends React.Component {
 				<div className="sidebar table-of-contents">
 					<ul>
 						<li><Link to="basicUsage">Basic Usage</Link></li>
+						<li><Link to="offset">Offsets</Link></li>
 						<li><Link to="other">Other</Link></li>
 					</ul>
 				</div>
