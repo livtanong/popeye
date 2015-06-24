@@ -22,7 +22,7 @@ export default class OffsetGuide extends React.Component {
 			Aye aye, Captain!
 		</div>
 	</Popeye>
-</a>`
+</a>`;
 
 		const demoString2 =
 `<a key="anchor2" className="button button-main" onClick={ Popeye.toggleHandler(this, "popover2") }>
@@ -35,7 +35,21 @@ export default class OffsetGuide extends React.Component {
 			Aye aye, Captain!
 		</div>
 	</Popeye>
-</a>`
+</a>`;
+
+	const demoString3 = 
+`<a key="anchor2" className="button button-main" onClick={ Popeye.toggleHandler(this, "popover2") }>
+	click me 3
+	<Popeye
+		anchorOffset={ {left: 45, top: 16} }
+		popOffset={ {left: 45, top: 16} }
+		opened={ this.state.popover2 } 
+		onToggle={ Popeye.toggleHandler(this, "popover2") }>
+		<div className="dropdown">
+			Aye aye, Captain!
+		</div>
+	</Popeye>
+</a>`;
 
 		return (
 			<article>
@@ -73,7 +87,7 @@ export default class OffsetGuide extends React.Component {
 				<section>
 					<h2>Pop Offset</h2>
 					<p>... And sometimes, we want to move the point on <code>Popeye</code> that the anchor point is attached to.</p>
-					<p>This has the same effect as the example above illustrating anchor offsetting, except for one difference: the origin of the animation</p>
+					<p>This has the same effect as the example above illustrating anchor offsetting, except for one difference: the origin of the animation. In the previous example, the <code>Popeye</code> appeared to have come a point on its upper-left. In this example, the origin appeared to have come from the <em>lower</em> left of the <strong>anchor</strong>.</p>
 					<div className="example">
 						<a key="anchor2" className="button button-main" onClick={ Popeye.toggleHandler(this, "popover2") }>
 							click me 2
@@ -89,6 +103,29 @@ export default class OffsetGuide extends React.Component {
 					</div>
 					<PrismCode className="code-block language-jsx">
 						{ demoString2 }
+					</PrismCode>
+				</section>
+				<section>
+					<h2>Altogether Now</h2>
+					<p>Now we apply the two to mimic Google's Material Design guidelines on popovers.</p>
+					<p>The MDG advises us to make the popover <em>cover</em> the button from which it emanates.</p>
+					<p>Both <code>anchorOffset</code> and <code>popOffset</code> have the same value because we would like them both to be aligned to the top-left. The numerical values we assign them only control the origin of the animation—the center point of the anchor.</p>
+					<div className="example">
+						<a key="anchor2" className="button button-main" onClick={ Popeye.toggleHandler(this, "popover2") }>
+							click me 3
+							<Popeye
+								anchorOffset={ {left: 45, top: 16} }
+								popOffset={ {left: 45, top: 16} }
+								opened={ this.state.popover2 } 
+								onToggle={ Popeye.toggleHandler(this, "popover2") }>
+								<div className="dropdown">
+									Aye aye, Captain!
+								</div>
+							</Popeye>
+						</a>
+					</div>
+					<PrismCode className="code-block language-jsx">
+						{ demoString3 }
 					</PrismCode>
 				</section>
 			</article>
