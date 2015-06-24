@@ -2,7 +2,7 @@
   "name": "popeye",
   "version": "0.0.1",
   "description": "A native react popup component that can be anchored to any element",
-  "main": "index.js",
+  "main": "lib/js/Popeye.js",
   "scripts": {
     "webpack": "webpack --progress --colors",
     "dev": "webpack-dev-server --config webpack-prerender.config.js",
