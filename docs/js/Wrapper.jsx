@@ -1,12 +1,12 @@
 // import DocStyles from "../scss/Docs.scss";
 // import Styles from "../scss/styles.scss";
-// import IconStyles from "../icons/style.css";
 // import HighlightStyles from "../scss/solarized_light.css"
 // import PrismStyles from "../scss/prism.css";
 // import IAmSorry from "./IAmSorry";
 import MainStyles from "../scss/Main.scss";
 import PrismStyles from "../scss/prism.css";
 import PopeyeStyles from "../../src/scss/Popeye.scss";
+import IconStyles from "../icons/style.css";
 
 import React from "react";
 import Router, {RouteHandler} from "react-router";

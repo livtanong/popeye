@@ -1,0 +1,68 @@
+{
+	"IcoMoonType": "selection",
+	"icons": [
+		{
+			"icon": {
+				"paths": [
+					"M409.6 313.6v658.36c-200.142-13.173-358.4-179.685-358.4-383.16 0-14.138-11.462-25.6-25.6-25.6s-25.6 11.462-25.6 25.6c-0 231.761 181.161 421.209 409.6 434.46v0.74h51.2v-0.74c228.439-13.251 409.6-202.699 409.6-434.46 0-14.138-11.462-25.6-25.6-25.6s-25.6 11.462-25.6 25.6c0 203.475-158.258 369.987-358.4 383.16v0-658.36h204.8c14.138 0 25.6-11.462 25.6-25.6s-11.462-25.6-25.6-25.6h-204.8v-108.8h-51.2v108.8h-204.8c-14.138 0-25.6 11.462-25.6 25.6s11.462 25.6 25.6 25.6h204.8z",
+					"M435.2 204.8c56.554 0 102.4-45.846 102.4-102.4s-45.846-102.4-102.4-102.4c-56.554 0-102.4 45.846-102.4 102.4s45.846 102.4 102.4 102.4v0 0zM435.2 153.6c-28.277 0-51.2-22.923-51.2-51.2s22.923-51.2 51.2-51.2c28.277 0 51.2 22.923 51.2 51.2s-22.923 51.2-51.2 51.2v0 0z"
+				],
+				"attrs": [
+					{},
+					{}
+				],
+				"isMulticolor": false,
+				"width": 870,
+				"grid": 0,
+				"tags": [
+					"Popeye Logo"
+				]
+			},
+			"attrs": [
+				{},
+				{}
+			],
+			"properties": {
+				"order": 1,
+				"id": 0,
+				"prevSize": 32,
+				"name": "PopeyeLogo",
+				"code": 58880
+			},
+			"setIdx": 0,
+			"setId": 1,
+			"iconIdx": 0
+		}
+	],
+	"height": 1024,
+	"metadata": {
+		"name": "icomoon"
+	},
+	"preferences": {
+		"showGlyphs": true,
+		"showQuickUse": true,
+		"showQuickUse2": true,
+		"showSVGs": true,
+		"fontPref": {
+			"prefix": "icon-",
+			"metadata": {
+				"fontFamily": "icomoon"
+			},
+			"metrics": {
+				"emSize": 1024,
+				"baseline": 6.25,
+				"whitespace": 50
+			}
+		},
+		"imagePref": {
+			"prefix": "icon-",
+			"png": true,
+			"useClassSelector": true,
+			"color": 4473924,
+			"bgColor": 16777215,
+			"classSelector": ".icon"
+		},
+		"historySize": 100,
+		"gridSize": 16
+	}
+}
