@@ -6,14 +6,12 @@ import Guide from "./Pages/Guide";
 
 import BasicUsageGuide from "./Pages/BasicUsageGuide";
 import OffsetGuide from "./Pages/OffsetGuide";
-import OtherGuide from "./Pages/OtherGuide";
 
 let Routes = (
 	<Route path="/" handler={ Wrapper }>
 		<Route name="guide" path="guide/" handler={ Guide }>
 			<Route name="basicUsage" path="basic-usage/" handler={ BasicUsageGuide } />
 			<Route name="offset" path="offset/" handler={ OffsetGuide } />
-			<Route name="other" path="other/" handler={ OtherGuide } />
 			<DefaultRoute handler={ BasicUsageGuide } />
 		</Route>
 		<DefaultRoute name="index" handler={ Index } />
