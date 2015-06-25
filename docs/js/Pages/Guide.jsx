@@ -15,7 +15,6 @@ export default class Guide extends React.Component {
 					<ul>
 						<li><Link to="basicUsage">Basic Usage</Link></li>
 						<li><Link to="offset">Offsets</Link></li>
-						<li><Link to="other">Other</Link></li>
 					</ul>
 				</div>
 				<div className="main">
