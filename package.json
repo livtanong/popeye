@@ -1,8 +1,8 @@
 {
   "name": "popeye",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "A native react popup component that can be anchored to any element",
-  "main": "index.js",
+  "main": "lib/js/Popeye.js",
   "scripts": {
     "webpack": "webpack --progress --colors",
     "dev": "webpack-dev-server --config webpack-prerender.config.js",
@@ -32,13 +32,15 @@
     "webpack-dev-server": "^1.9.0"
   },
   "dependencies": {
-    "classnames": "^2.1.2",
     "file-loader": "^0.8.4",
     "lodash": "^3.9.3",
     "node-bourbon": "^4.2.3",
-    "react": "^0.13.3",
     "react-prism": "^1.4.0",
     "react-router": "^0.13.3",
     "url-loader": "^0.5.6"
+  },
+  "peerDependencies": {
+    "react": "^0.13.3",
+    "classnames": "^2.1.2"
   }
 }

@@ -32,6 +32,7 @@ module.exports = function(options) {
 	  "/",
 	  "/guide/",
 	  "/guide/basic-usage/",
+	  "/guide/offset/",
 	  "/guide/other/"
 	]
 

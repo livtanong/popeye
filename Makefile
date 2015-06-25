@@ -8,3 +8,7 @@ development: deps
 
 prerender: deps
 	./node_modules/.bin/webpack --config webpack-prerender.config.js --progress --colors
+
+lib: deps
+	babel src --out-dir lib
+	node sass-compile.js

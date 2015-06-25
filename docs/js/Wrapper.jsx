@@ -6,6 +6,7 @@
 // import IAmSorry from "./IAmSorry";
 import MainStyles from "../scss/Main.scss";
 import PrismStyles from "../scss/prism.css";
+import PopeyeStyles from "../../src/scss/Popeye.scss";
 
 import React from "react";
 import Router, {RouteHandler} from "react-router";
