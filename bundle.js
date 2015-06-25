@@ -23770,7 +23770,7 @@ return /******/ (function(modules) { // webpackBootstrap
 						_react2["default"].createElement(
 							"title",
 							null,
-							"Plotypus Documentation"
+							"Popeye Documentation"
 						),
 						_react2["default"].createElement("meta", { charSet: "utf-8" }),
 						_react2["default"].createElement("link", { href: "http://fonts.googleapis.com/css?family=Roboto:300,700,400", rel: "stylesheet", type: "text/css" }),
