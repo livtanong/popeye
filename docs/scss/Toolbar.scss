@@ -4,6 +4,7 @@
 .Toolbar {
 	@include display(flex);
 	@include align-items(center);
+	@include flex-shrink(0);
 	background-color: $main;
 	color: $light;
 	height: 64px;

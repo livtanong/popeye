@@ -75,7 +75,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Index2 = _interopRequireDefault(_Index);
 
-	var _Wrapper = __webpack_require__(221);
+	var _Wrapper = __webpack_require__(222);
 
 	var _Wrapper2 = _interopRequireDefault(_Wrapper);
 
@@ -83,15 +83,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _PagesGuide2 = _interopRequireDefault(_PagesGuide);
 
-	var _PagesBasicUsageGuide = __webpack_require__(234);
+	var _PagesBasicUsageGuide = __webpack_require__(243);
 
 	var _PagesBasicUsageGuide2 = _interopRequireDefault(_PagesBasicUsageGuide);
 
-	var _PagesOffsetGuide = __webpack_require__(237);
+	var _PagesOffsetGuide = __webpack_require__(246);
 
 	var _PagesOffsetGuide2 = _interopRequireDefault(_PagesOffsetGuide);
 
-	var _PagesOtherGuide = __webpack_require__(238);
+	var _PagesOtherGuide = __webpack_require__(247);
 
 	var _PagesOtherGuide2 = _interopRequireDefault(_PagesOtherGuide);
 
@@ -38485,6 +38485,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _svgIconsPopeyeLogoSvg = __webpack_require__(221);
+
+	var _svgIconsPopeyeLogoSvg2 = _interopRequireDefault(_svgIconsPopeyeLogoSvg);
+
 	var Index = (function (_React$Component) {
 		function Index() {
 			_classCallCheck(this, Index);
@@ -38501,8 +38505,31 @@ return /******/ (function(modules) { // webpackBootstrap
 			value: function render() {
 				return _react2["default"].createElement(
 					"div",
-					null,
-					"derp"
+					{ className: "Index" },
+					_react2["default"].createElement(
+						"section",
+						{ id: "hero" },
+						_react2["default"].createElement("div", { id: "logo", className: "icon-PopeyeLogo" }),
+						_react2["default"].createElement(
+							"div",
+							{ id: "display-text" },
+							_react2["default"].createElement(
+								"h1",
+								null,
+								"Popeye"
+							),
+							_react2["default"].createElement(
+								"h2",
+								null,
+								"A flexible popover library for tooltips, dropdown menus, and others."
+							),
+							_react2["default"].createElement(
+								"code",
+								{ className: "installation" },
+								"npm install --save popeye"
+							)
+						)
+					)
 				);
 			}
 		}]);
@@ -38515,11 +38542,16 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 221 */
+/***/ function(module, exports) {
+
+	module.exports = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0ZWQgYnkgSWNvTW9vbi5pbyAtLT4KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyNyIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDI3IDMyIj4KPHBhdGggZmlsbD0iIzQ0NDQ0NCIgZD0iTTEyLjggOS44djIwLjU3NGMtNi4yNTQtMC40MTItMTEuMi01LjYxNS0xMS4yLTExLjk3NCAwLTAuNDQyLTAuMzU4LTAuOC0wLjgtMC44cy0wLjggMC4zNTgtMC44IDAuOGMwIDcuMjQzIDUuNjYxIDEzLjE2MyAxMi44IDEzLjU3N3YwLjAyM2gxLjZ2LTAuMDIzYzcuMTM5LTAuNDE0IDEyLjgtNi4zMzQgMTIuOC0xMy41NzcgMC0wLjQ0Mi0wLjM1OC0wLjgtMC44LTAuOHMtMC44IDAuMzU4LTAuOCAwLjhjMCA2LjM1OS00Ljk0NiAxMS41NjItMTEuMiAxMS45NzR2MC0yMC41NzRoNi40YzAuNDQyIDAgMC44LTAuMzU4IDAuOC0wLjhzLTAuMzU4LTAuOC0wLjgtMC44aC02LjR2LTMuNGgtMS42djMuNGgtNi40Yy0wLjQ0MiAwLTAuOCAwLjM1OC0wLjggMC44czAuMzU4IDAuOCAwLjggMC44aDYuNHoiPjwvcGF0aD4KPHBhdGggZmlsbD0iIzQ0NDQ0NCIgZD0iTTEzLjYgNi40YzEuNzY3IDAgMy4yLTEuNDMzIDMuMi0zLjJzLTEuNDMzLTMuMi0zLjItMy4yYy0xLjc2NyAwLTMuMiAxLjQzMy0zLjIgMy4yczEuNDMzIDMuMiAzLjIgMy4ydjAgMHpNMTMuNiA0LjhjLTAuODg0IDAtMS42LTAuNzE2LTEuNi0xLjZzMC43MTYtMS42IDEuNi0xLjZjMC44ODQgMCAxLjYgMC43MTYgMS42IDEuNnMtMC43MTYgMS42LTEuNiAxLjZ2MCAweiI+PC9wYXRoPgo8L3N2Zz4K"
+
+/***/ },
+/* 222 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import DocStyles from "../scss/Docs.scss";
 	// import Styles from "../scss/styles.scss";
-	// import IconStyles from "../icons/style.css";
 	// import HighlightStyles from "../scss/solarized_light.css"
 	// import PrismStyles from "../scss/prism.css";
 	// import IAmSorry from "./IAmSorry";
@@ -38537,17 +38569,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
-	var _scssMainScss = __webpack_require__(222);
+	var _scssMainScss = __webpack_require__(223);
 
 	var _scssMainScss2 = _interopRequireDefault(_scssMainScss);
 
-	var _scssPrismCss = __webpack_require__(226);
+	var _scssPrismCss = __webpack_require__(227);
 
 	var _scssPrismCss2 = _interopRequireDefault(_scssPrismCss);
 
-	var _srcScssPopeyeScss = __webpack_require__(228);
+	var _srcScssPopeyeScss = __webpack_require__(229);
 
 	var _srcScssPopeyeScss2 = _interopRequireDefault(_srcScssPopeyeScss);
+
+	var _iconsStyleCss = __webpack_require__(231);
+
+	var _iconsStyleCss2 = _interopRequireDefault(_iconsStyleCss);
 
 	var _react = __webpack_require__(2);
 
@@ -38557,11 +38593,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _reactRouter2 = _interopRequireDefault(_reactRouter);
 
-	var _Toolbar = __webpack_require__(230);
+	var _Toolbar = __webpack_require__(239);
 
 	var _Toolbar2 = _interopRequireDefault(_Toolbar);
 
-	var _prism = __webpack_require__(233);
+	var _prism = __webpack_require__(242);
 
 	var _prism2 = _interopRequireDefault(_prism);
 
@@ -38616,30 +38652,43 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 222 */
+/* 223 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 223 */,
 /* 224 */,
 /* 225 */,
-/* 226 */
+/* 226 */,
+/* 227 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 227 */,
-/* 228 */
+/* 228 */,
+/* 229 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 229 */,
-/* 230 */
+/* 230 */,
+/* 231 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 232 */,
+/* 233 */,
+/* 234 */,
+/* 235 */,
+/* 236 */,
+/* 237 */,
+/* 238 */,
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -38656,7 +38705,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
-	var _scssToolbarScss = __webpack_require__(231);
+	var _scssToolbarScss = __webpack_require__(240);
 
 	var _scssToolbarScss2 = _interopRequireDefault(_scssToolbarScss);
 
@@ -38728,14 +38777,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 231 */
+/* 240 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 232 */,
-/* 233 */
+/* 241 */,
+/* 242 */
 /***/ function(module, exports) {
 
 	/* http://prismjs.com/download.html?themes=prism&languages=markup+clike+javascript+jsx */
@@ -38834,7 +38883,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	})(Prism);;
 
 /***/ },
-/* 234 */
+/* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -38857,7 +38906,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactPrism = __webpack_require__(235);
+	var _reactPrism = __webpack_require__(244);
 
 	var _srcJsPopeye = __webpack_require__(160);
 
@@ -39019,14 +39068,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 235 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	exports.PrismCode = __webpack_require__(236);
+	exports.PrismCode = __webpack_require__(245);
 
 /***/ },
-/* 236 */
+/* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -39086,7 +39135,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 237 */
+/* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -39109,7 +39158,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactPrism = __webpack_require__(235);
+	var _reactPrism = __webpack_require__(244);
 
 	var _srcJsPopeye = __webpack_require__(160);
 
@@ -39432,7 +39481,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 238 */
+/* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
