@@ -18,7 +18,7 @@ class Wrapper extends React.Component {
 		return (
 			<html>
 				<head>
-					<title>Plotypus Documentation</title>
+					<title>Popeye Documentation</title>
 					<meta charSet="utf-8" /> 
 					<link href='http://fonts.googleapis.com/css?family=Roboto:300,700,400' rel='stylesheet' type='text/css' />
 					<link href="/bundle.css" rel='stylesheet' type='text/css' />
