@@ -4,12 +4,12 @@
   display: none;
 }
 
-.Dropdown {
+.PopeyeElement {
   position: absolute;
   z-index: 1000;
 }
 
-.DropdownTransition-enter {
+.PopeyeTransition-enter {
   opacity: 0.01;
   @include transform(scale(0));
   // .modal-body {
@@ -20,7 +20,7 @@
   // }
 }
 
-.DropdownTransition-enter.DropdownTransition-enter-active {
+.PopeyeTransition-enter.PopeyeTransition-enter-active {
   opacity: 1;
   // @include transition(opacity 0.3s);
   @include transition-property(transform, opacity);
@@ -36,7 +36,7 @@
   // }
 }
 
-.DropdownTransition-leave {
+.PopeyeTransition-leave {
   @include transition-property(transform, opacity);
   @include transition-duration(0.3s); 
   @include transform(scale(1));
@@ -52,7 +52,7 @@
   // }
 }
 
-.DropdownTransition-leave.DropdownTransition-leave-active {
+.PopeyeTransition-leave.PopeyeTransition-leave-active {
   @include transform(scale(0));
   opacity: 0;
   // .modal-body {

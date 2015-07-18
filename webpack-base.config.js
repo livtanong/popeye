@@ -2,7 +2,6 @@ var webpack = require('webpack');
 var StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
 var bourbon = require('node-bourbon');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
 var path = require("path");
 
 module.exports = function(options) {

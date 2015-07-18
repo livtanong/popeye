@@ -7,7 +7,9 @@ export default class OffsetGuide extends React.Component {
 		super(props);
 		this.state = {
 			popover1: false,
-			popover2: false
+			popover2: false,
+			popover3: false,
+			popover4: false
 		}
 	}
 	render() {
@@ -38,6 +40,22 @@ export default class OffsetGuide extends React.Component {
 </a>`;
 
 	const demoString3 = 
+`<a key="anchor3" className="button button-main" onClick={ Popeye.toggleHandler(this, "popover3") }>
+	click me 3
+	<Popeye
+		anchorOffset={ (anchor, pop) => {
+			const dims = anchor.getBoundingClientRect();
+			return { top: dims.height / 2, left: dims.width / 2}
+		} }
+		opened={ this.state.popover3 } 
+		onToggle={ Popeye.toggleHandler(this, "popover3") }>
+		<div className="dropdown">
+			Aye aye, Captain!
+		</div>
+	</Popeye>
+</a>`;
+
+	const demoString4 = 
 `<a key="anchor2" className="button button-main" onClick={ Popeye.toggleHandler(this, "popover2") }>
 	click me 3
 	<Popeye
@@ -102,20 +120,21 @@ export default class OffsetGuide extends React.Component {
 						</a>
 					</div>
 					<PrismCode className="code-block language-jsx">
-						{ demoString2 }
+						{ demoString3 }
 					</PrismCode>
 				</section>
 				<section>
-					<h2>Altogether Now</h2>
-					<p>Now we apply the two to mimic Google's Material Design guidelines on popovers.</p>
-					<p>The MDG advises us to make the popover <em>cover</em> the button from which it emanates.</p>
-					<p>Both <code>anchorOffset</code> and <code>popOffset</code> have the same value because we would like them both to be aligned to the top-left. The numerical values we assign them only control the origin of the animation—the center point of the anchor.</p>
+					<h2>Functions as Offsets</h2>
+					<p>You can also use functions for the offsets. Popeye passes the anchor and itself (in the form of domNodes) to the function.</p>
+					<p>You must return an object of the same format as the non function version of the offsets.</p>
 					<div className="example">
-						<a key="anchor2" className="button button-main" onClick={ Popeye.toggleHandler(this, "popover3") }>
+						<a key="anchor3" className="button button-main" onClick={ Popeye.toggleHandler(this, "popover3") }>
 							click me 3
 							<Popeye
-								anchorOffset={ {left: 45, top: 16} }
-								popOffset={ {left: 45, top: 16} }
+								anchorOffset={ (anchor, pop) => {
+									const dims = anchor.getBoundingClientRect();
+									return { top: dims.height / 2, left: dims.width / 2}
+								} }
 								opened={ this.state.popover3 } 
 								onToggle={ Popeye.toggleHandler(this, "popover3") }>
 								<div className="dropdown">
@@ -126,6 +145,29 @@ export default class OffsetGuide extends React.Component {
 					</div>
 					<PrismCode className="code-block language-jsx">
 						{ demoString3 }
+					</PrismCode>
+				</section>
+				<section>
+					<h2>Altogether Now</h2>
+					<p>Now we apply the two to mimic Google's Material Design guidelines on popovers.</p>
+					<p>The MDG advises us to make the popover <em>cover</em> the button from which it emanates.</p>
+					<p>Both <code>anchorOffset</code> and <code>popOffset</code> have the same value because we would like them both to be aligned to the top-left. The numerical values we assign them only control the origin of the animation—the center point of the anchor.</p>
+					<div className="example">
+						<a key="anchor4" className="button button-main" onClick={ Popeye.toggleHandler(this, "popover4") }>
+							click me 4
+							<Popeye
+								anchorOffset={ {left: 45, top: 16} }
+								popOffset={ {left: 45, top: 16} }
+								opened={ this.state.popover4 } 
+								onToggle={ Popeye.toggleHandler(this, "popover4") }>
+								<div className="dropdown">
+									Aye aye, Captain!
+								</div>
+							</Popeye>
+						</a>
+					</div>
+					<PrismCode className="code-block language-jsx">
+						{ demoString4 }
 					</PrismCode>
 				</section>
 			</article>

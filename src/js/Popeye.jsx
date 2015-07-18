@@ -5,7 +5,7 @@ import LayeredComponent from "./LayeredComponent";
 
 const ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
-export default class Dropdown extends LayeredComponent {
+export default class Popeye extends LayeredComponent {
   constructor(props) {
     super(props);
     this.renderLayer = this.renderLayer.bind(this);
@@ -13,6 +13,7 @@ export default class Dropdown extends LayeredComponent {
     this.handleBodyClick = this.handleBodyClick.bind(this);
     this.clickHandler = this.clickHandler.bind(this);
     this.getTransformOrigin = this.getTransformOrigin.bind(this);
+    this.componentDidUpdate = this.componentDidUpdate.bind(this);
 
     this.state = {
       isPropagationStopped: false,
@@ -30,11 +31,14 @@ export default class Dropdown extends LayeredComponent {
       this.setState({currentAnchorPos: this.getAnchorPoint()})
     }
     // not sure about this
-    if ((typeof document != "undefined") && this.props.opened && !prevProps.opened) {
-      document.addEventListener('click', this.handleBodyClick);
+    if ((typeof document !== "undefined") && this.props.opened && !prevProps.opened) {
+      document.addEventListener("click", this.handleBodyClick);
     } else if (!this.props.opened && prevProps.opened) {
-      document.removeEventListener('click', this.handleBodyClick);
+      document.removeEventListener("click", this.handleBodyClick);
     }
+  }
+  scrollHandler(event) {
+    console.log("scrolling");
   }
   dirToAxis(key) {
     return {"left": "x", "right": "x", "top": "y", "bottom": "y"}[key];
@@ -43,16 +47,18 @@ export default class Dropdown extends LayeredComponent {
     return {"left": "right", "right": "left", "top": "bottom", "bottom": "top"}[key];
   }
   getAnchorPoint() {
-    if (typeof document != "undefined") {    
+    if (typeof document != "undefined") {
+      const anchor = this.props.anchor || React.findDOMNode(this).parentNode;
+      const pos = anchor.getBoundingClientRect();
+      const anchorOffset = _.isFunction(this.props.anchorOffset)
+        ? this.props.anchorOffset(anchor, React.findDOMNode(this))
+        : this.props.anchorOffset;
 
-      const pos = this.props.anchor 
-        ? this.props.anchor.getBoundingClientRect() 
-        : React.findDOMNode(this).parentNode.getBoundingClientRect(); // uses parent as anchor instead.
 
-      const point = _.chain(_.pick(pos, _.keys(this.props.anchorOffset)))
+      const point = _.chain(_.pick(pos, _.keys(anchorOffset)))
         .mapValues((value, key) => {
           const scrollProp = (this.dirToAxis(key) === "x") ? "scrollLeft" : "scrollTop";
-          return value + document.body[scrollProp] + (this.props.anchorOffset[key] * ((key === "right" || key === "bottom") ? -1 : 1));
+          return value + document.body[scrollProp] + (anchorOffset[key] * ((key === "right" || key === "bottom") ? -1 : 1));
         })
         .mapKeys((value, key) => this.dirToAxis(key))
         .value()
@@ -117,8 +123,8 @@ export default class Dropdown extends LayeredComponent {
         component={ this.props.component }
         style={ styleObject } 
         onClick={ this.clickHandler } 
-        className={ classnames("Dropdown", this.props.className) }
-        transitionName="DropdownTransition"
+        className={ classnames("PopeyeElement", this.props.className) }
+        transitionName="PopeyeTransition"
         transitionEnter={ this.props.transitionEnabled }
         transitionLeave={ this.props.transitionEnabled }>
         { this.props.opened && child }
@@ -134,20 +140,26 @@ export default class Dropdown extends LayeredComponent {
   }
 }
 
-Dropdown.defaultProps = {
+Popeye.defaultProps = {
   component: "div",
   opened: false,
   anchorOffset: {"left": 0, "bottom": 0},
   popOffset: {"left": 0, "top": 0},
   transitionEnabled: true
 }
-Dropdown.propTypes = {
+Popeye.propTypes = {
   component: React.PropTypes.string,
   className: React.PropTypes.string,
   opened: React.PropTypes.bool,
   onToggle: React.PropTypes.func,
   anchor: React.PropTypes.object, // domNode
-  anchorOffset: React.PropTypes.object,
-  popOffset: React.PropTypes.object,
+  anchorOffset: React.PropTypes.oneOfType([
+    React.PropTypes.object,
+    React.PropTypes.func
+  ]),
+  popOffset: React.PropTypes.oneOfType([
+    React.PropTypes.object,
+    React.PropTypes.func
+  ]),
   transitionEnabled: React.PropTypes.bool
 }
