@@ -138,7 +138,6 @@ export default class Popeye extends LayeredComponent {
   }
 
   static toggleHandler(context, popeyeName) {
-    console.log(this, context, popeyeName);
     return (value) => context.setState({[popeyeName]: isFinite(value) ? value : !context.state[popeyeName]});
   }
 }
