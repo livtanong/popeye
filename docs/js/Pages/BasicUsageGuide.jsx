@@ -1,6 +1,6 @@
 import React from "react";
 import {PrismCode} from "react-prism";
-import Popeye from "../../../src/js/Popeye";
+import Popeye from "../../../lib/js/Popeye";
 
 export default class BasicUsageGuide extends React.Component {
 	constructor(props) {

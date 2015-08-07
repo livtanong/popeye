@@ -33,8 +33,10 @@ export default class Popeye extends LayeredComponent {
     // not sure about this
     if ((typeof document !== "undefined") && this.props.opened && !prevProps.opened) {
       document.addEventListener("click", this.handleBodyClick);
+      window.addEventListener("mousewheel", this.scrollHandler);
     } else if (!this.props.opened && prevProps.opened) {
       document.removeEventListener("click", this.handleBodyClick);
+      window.removeEventListener("mousewheel", this.scrollHandler);
     }
   }
   scrollHandler(event) {
@@ -136,6 +138,7 @@ export default class Popeye extends LayeredComponent {
   }
 
   static toggleHandler(context, popeyeName) {
+    console.log(this, context, popeyeName);
     return (value) => context.setState({[popeyeName]: isFinite(value) ? value : !context.state[popeyeName]});
   }
 }
