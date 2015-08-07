@@ -1,11 +1,11 @@
 .Popeye {
   display: none; }
 
-.Dropdown {
+.PopeyeElement {
   position: absolute;
   z-index: 1000; }
 
-.DropdownTransition-enter {
+.PopeyeTransition-enter {
   opacity: 0.01;
   -webkit-transform: scale(0);
   -moz-transform: scale(0);
@@ -13,7 +13,7 @@
   -o-transform: scale(0);
   transform: scale(0); }
 
-.DropdownTransition-enter.DropdownTransition-enter-active {
+.PopeyeTransition-enter.PopeyeTransition-enter-active {
   opacity: 1;
   -webkit-transition-property: -webkit-transform, opacity;
   -moz-transition-property: -moz-transform, opacity;
@@ -27,7 +27,7 @@
   -o-transform: scale(1);
   transform: scale(1); }
 
-.DropdownTransition-leave {
+.PopeyeTransition-leave {
   -webkit-transition-property: -webkit-transform, opacity;
   -moz-transition-property: -moz-transform, opacity;
   transition-property: transform, opacity;
@@ -41,7 +41,7 @@
   transform: scale(1);
   opacity: 1; }
 
-.DropdownTransition-leave.DropdownTransition-leave-active {
+.PopeyeTransition-leave.PopeyeTransition-leave-active {
   -webkit-transform: scale(0);
   -moz-transform: scale(0);
   -ms-transform: scale(0);
