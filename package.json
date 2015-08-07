@@ -1,6 +1,6 @@
 {
   "name": "popeye",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A native react popup component that can be anchored to any element",
   "main": "lib/js/Popeye.js",
   "scripts": {
