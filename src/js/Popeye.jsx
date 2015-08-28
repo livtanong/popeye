@@ -14,6 +14,7 @@ export default class Popeye extends LayeredComponent {
     this.clickHandler = this.clickHandler.bind(this);
     this.getTransformOrigin = this.getTransformOrigin.bind(this);
     this.componentDidUpdate = this.componentDidUpdate.bind(this);
+    this.componentWillUnmount = this.componentWillUnmount.bind(this);
 
     this.state = {
       isPropagationStopped: false,
@@ -23,6 +24,10 @@ export default class Popeye extends LayeredComponent {
   componentDidMount() {
     this.setState({currentAnchorPos: this.getAnchorPoint()});
     super.init();
+  }
+  componentWillUnmount() {
+    document.removeEventListener("click", this.handleBodyClick);
+    window.removeEventListener("mousewheel", this.scrollHandler);
   }
   componentDidUpdate(prevProps, prevState) {
     super.componentDidUpdate(prevProps, prevState);
