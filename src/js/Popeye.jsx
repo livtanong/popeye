@@ -26,6 +26,7 @@ export default class Popeye extends LayeredComponent {
     super.init();
   }
   componentWillUnmount() {
+    this.props.onToggle(false);
     document.removeEventListener("click", this.handleBodyClick);
     window.removeEventListener("mousewheel", this.scrollHandler);
   }
