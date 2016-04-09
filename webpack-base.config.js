@@ -35,7 +35,7 @@ module.exports = function(options) {
 	]
 
 	return {
-		entry: path.resolve(__dirname, "docs/js/entry.jsx"),
+		entry: path.resolve(__dirname, "docs/js/Entry.jsx"),
 		output: output,
 		resolve: {
       extensions: ['', '.js', '.jsx']
