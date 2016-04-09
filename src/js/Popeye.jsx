@@ -1,9 +1,9 @@
-import React from "react/addons";
+import React from "react";
+import ReactDOM from "react-dom";
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import _ from "lodash";
 import classnames from "classnames";
 import LayeredComponent from "./LayeredComponent";
-
-const ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 export default class Popeye extends LayeredComponent {
   constructor(props) {
@@ -18,7 +18,7 @@ export default class Popeye extends LayeredComponent {
 
     this.state = {
       isPropagationStopped: false,
-      currentAnchorPos: {}
+      currentAnchorPos: {x: 0, y: 0}
     };
   }
   componentDidMount() {
@@ -57,10 +57,10 @@ export default class Popeye extends LayeredComponent {
   }
   getAnchorPoint() {
     if (typeof document != "undefined") {
-      const anchor = this.props.anchor || React.findDOMNode(this).parentNode;
+      const anchor = this.props.anchor || ReactDOM.findDOMNode(this).parentNode;
       const pos = anchor.getBoundingClientRect();
       const anchorOffset = _.isFunction(this.props.anchorOffset)
-        ? this.props.anchorOffset(anchor, React.findDOMNode(this))
+        ? this.props.anchorOffset(anchor, ReactDOM.findDOMNode(this))
         : this.props.anchorOffset;
 
 
@@ -134,6 +134,8 @@ export default class Popeye extends LayeredComponent {
         onClick={ this.clickHandler } 
         className={ classnames("PopeyeElement", this.props.className) }
         transitionName="PopeyeTransition"
+        transitionEnterTimeout={300}
+        transitionLeaveTimeout={300}
         transitionEnter={ this.props.transitionEnabled }
         transitionLeave={ this.props.transitionEnabled }>
         { this.props.opened && child }

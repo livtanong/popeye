@@ -8,7 +8,7 @@ export default class Toolbar extends React.Component {
 		return (
 			<header className="Toolbar">
 				<Link id="brand" to="/">
-				  <h1>Popeye <small>v0.0.1</small></h1>
+				  <h1>Popeye <small>v0.1.0</small></h1>
 				</Link>
 				<div className="spacer" />
 				<div className="toolbar-group">

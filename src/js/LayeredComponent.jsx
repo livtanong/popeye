@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom"
 
 export default class LayeredComponent extends React.Component {
   constructor(props) {
@@ -24,9 +25,9 @@ export default class LayeredComponent extends React.Component {
   _renderLayer() {
     let layerElement = this.renderLayer();
     if (layerElement === null) {
-      React.render(<noscript />, this._layer);
+      ReactDOM.render(<noscript />, this._layer);
     } else {
-      React.render(layerElement, this._layer);
+      ReactDOM.render(layerElement, this._layer);
     }
 
     if (this.layerDidMount) {
@@ -37,6 +38,6 @@ export default class LayeredComponent extends React.Component {
     if (this.layerWillUnmount) {
       this.layerWillUnmount(this._layer);
     }
-    React.unmountComponentAtNode(this._layer);
+    ReactDOM.unmountComponentAtNode(this._layer);
   }
 }

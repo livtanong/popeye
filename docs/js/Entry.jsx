@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import Router, {DefaultRoute, Link, Route, RouteHandler} from "react-router";
 import Index from "./Index";
 import Wrapper from "./Wrapper";
@@ -24,7 +25,7 @@ let PopeyeRouter = Router.create({
 
 if (typeof document !== "undefined") {
 	Router.run(Routes, Router.HistoryLocation, Handler => {
-		React.render(<Handler />, document);
+		ReactDOM.render(<Handler />, document);
 	})
 }
 
