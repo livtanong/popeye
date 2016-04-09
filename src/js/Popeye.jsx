@@ -18,7 +18,7 @@ export default class Popeye extends LayeredComponent {
 
     this.state = {
       isPropagationStopped: false,
-      currentAnchorPos: {}
+      currentAnchorPos: {x: 0, y: 0}
     };
   }
   componentDidMount() {
